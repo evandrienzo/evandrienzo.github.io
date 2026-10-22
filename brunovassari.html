@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Bruno Vassari per il vostro istituto">
+<meta property="og:description" content="Presentazione, catalogo 2026 e dimostrazione · Enzo Evandri, Beauty Strategist">
+<meta property="og:image" content="https://evandrienzo.github.io/bv-anteprima.jpg?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://evandrienzo.github.io/brunovassari.html">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#FFFFFF">
+<title>Bruno Vassari per il tuo centro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap">
+<style>
+*{box-sizing:border-box}
+body{margin:0;-webkit-text-size-adjust:100%}
+/* Layout: presentazione bianca da telefono — marchio, ritratto, numeri, viso e corpo, supporto, materiali, demo, contatti. Tema unico chiaro per scelta. */
+:root{
+  --bg:#FFFFFF; --ink:#1F1F1F; --muted:#767676; --line:#EAEAEA; --soft:#F6F5F3; --mark:#5E4B3C; --on-ink:#FFFFFF;
+  --font:"Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:300;font-size:17px;line-height:1.6}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(18px, env(safe-area-inset-left, 0px));padding-right:max(18px, env(safe-area-inset-right, 0px));padding-block:22px 44px;display:flex;flex-direction:column;gap:46px}
+h1,h2{font-weight:200;text-transform:uppercase;letter-spacing:.06em;line-height:1.15;margin:0;text-wrap:balance;color:var(--ink)}
+p{margin:0}
+b,strong{font-weight:600}
+.label{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;color:var(--muted)}
+.rule{width:44px;height:1px;background:var(--ink)}
+img{display:block;width:100%;height:auto}
+
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.wordmark{display:flex;flex-direction:column;line-height:1}
+.wordmark .bv{font-size:24px;font-weight:300;letter-spacing:.14em}
+.wordmark .pc{font-size:10px;letter-spacing:.32em;color:var(--muted);margin-top:6px;text-transform:uppercase}
+.who{font-size:12px;color:var(--muted);text-align:right;line-height:1.4}
+.who b{color:var(--ink);font-weight:400}
+
+.hero{display:flex;flex-direction:column;gap:20px}
+.hero h1{font-size:clamp(30px,8.4vw,42px)}
+.hero .lead{font-size:18px;color:var(--ink)}
+.ph{background:var(--soft)}
+
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line)}
+.fact{padding:16px 6px 14px 0;display:flex;flex-direction:column;gap:4px;min-width:0}
+.fact+.fact{padding-left:14px;border-left:1px solid var(--line)}
+.fact .n{font-size:30px;font-weight:200;line-height:1;letter-spacing:.02em}
+.fact .l{font-size:12px;color:var(--muted);line-height:1.35}
+
+.block{display:flex;flex-direction:column;gap:16px}
+.block h2{font-size:26px}
+.block p{color:#333}
+
+.steps{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:16px 0;border-bottom:1px solid var(--line)}
+.step .k{font-size:13px;letter-spacing:.12em;color:var(--muted);padding-top:3px}
+.step b{display:block;font-weight:400;text-transform:uppercase;letter-spacing:.08em;font-size:15px;margin-bottom:2px}
+.step span{font-size:15px;color:#444}
+
+.quote{font-size:22px;font-weight:200;line-height:1.45;padding:26px 0;border-block:1px solid var(--ink)}
+
+.docs{display:flex;flex-direction:column;gap:10px}
+.doc{display:grid;grid-template-columns:54px 1fr auto;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.doc img{width:54px;border:1px solid var(--line)}
+.doc .t{display:flex;flex-direction:column;min-width:0}
+.doc .t b{font-weight:400;font-size:16px}
+.doc .t span{font-size:13px;color:var(--muted)}
+.doc .go{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:400}
+
+.demo{background:var(--soft);padding:26px 20px;display:flex;flex-direction:column;gap:16px}
+.demo h2{font-size:24px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{display:flex;justify-content:center;align-items:center;min-height:52px;padding:10px;text-align:center;text-decoration:none;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:400}
+.btn.dark{background:var(--ink);color:var(--on-ink)}
+.btn.line{border:1px solid var(--ink);color:var(--ink)}
+
+.contacts{display:flex;flex-direction:column;gap:14px}
+.sig{display:flex;flex-direction:column;gap:2px}
+.sig .name{font-size:28px;font-weight:200;letter-spacing:.06em;text-transform:uppercase}
+.sig span{font-size:13px;color:var(--muted);letter-spacing:.06em}
+.rows{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:92px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px}
+.row .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.row .v{min-width:0;overflow-wrap:anywhere;user-select:all}
+.row a.v{color:var(--ink)}
+.copy{font:inherit;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:transparent;color:var(--ink);border:1px solid var(--line);padding:6px 10px;cursor:pointer}
+.btn:focus-visible,.doc:focus-visible,.copy:focus-visible,.row a:focus-visible{outline:2px solid var(--mark);outline-offset:3px}
+.foot{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+
+<main class="wrap">
+  <header class="top">
+    <div class="wordmark"><span class="bv">BRUNOVASSARI</span><span class="pc">Professional Cosmetics</span></div>
+    <div class="who"><b>Enzo Evandri</b><br>Beauty Strategist</div>
+  </header>
+
+  <section class="hero">
+    <div class="ph"><img src="bv-ritratto.webp" alt="Ritratto Bruno Vassari" width="352" height="502"></div>
+    <span class="label">Your Beauty, Our Mission</span>
+    <h1>Una proposta cosmetica per il vostro istituto</h1>
+    <div class="rule"></div>
+    <p class="lead">Bruno Vassari valorizza la vostra competenza e rende ancora più curata l’esperienza delle vostre clienti.</p>
+  </section>
+
+  <div class="facts">
+    <div class="fact"><span class="n">1984</span><span class="l">nasce a Barcellona</span></div>
+    <div class="fact"><span class="n">55</span><span class="l">paesi nel mondo</span></div>
+    <div class="fact"><span class="n">ISO</span><span class="l">9001 e 22716, laboratorio certificato</span></div>
+  </div>
+
+  <section class="block">
+    <span class="label">Il marchio</span>
+    <h2>Ricerca e sensorialità</h2>
+    <p>Bruno Vassari unisce ricerca cosmetica e sensorialità, con linee specialistiche dedicate al viso e al corpo, protocolli professionali e prodotti domiciliari che accompagnano il percorso iniziato in cabina.</p>
+    <div class="ph"><img src="bv-cabina.webp" alt="Trattamento Bruno Vassari in cabina" width="597" height="323"></div>
+    <p>Il valore nasce dall’incontro tra questi strumenti e la vostra professionalità: scegliere il trattamento appropriato, personalizzare il consiglio e far sentire ogni cliente seguita con attenzione.</p>
+  </section>
+
+  <section class="block">
+    <span class="label">Al vostro fianco</span>
+    <h2>Costruiamolo insieme</h2>
+    <p>Attraverso Beauty Progress vi accompagniamo in tre passaggi.</p>
+    <div class="steps">
+      <div class="step"><span class="k">01</span><div><b>Le linee giuste</b><span>Scegliamo le linee più coerenti con il vostro istituto.</span></div></div>
+      <div class="step"><span class="k">02</span><div><b>Formazione</b><span>Vi formiamo sui protocolli professionali, in cabina.</span></div></div>
+      <div class="step"><span class="k">03</span><div><b>Comunicazione</b><span>Vi aiutiamo a presentare i nuovi trattamenti alle clienti.</span></div></div>
+    </div>
+    <div class="ph"><img src="bv-formazione.webp" alt="Formazione Bruno Vassari" width="598" height="374"></div>
+  </section>
+
+  <p class="quote">Immaginate di introdurre un rituale che esprima pienamente lo stile del vostro centro: dalla prima consulenza alla texture sulla pelle, fino al consiglio domiciliare.</p>
+
+  <section class="docs" aria-labelledby="mt">
+    <span class="label">Da sfogliare</span>
+    <h2 id="mt" style="font-size:26px">I materiali</h2>
+    <a class="doc" href="bv-presentazione.pdf" target="_blank" rel="noopener"><img src="bv-cov-pres.webp" alt="" width="54" height="76"><span class="t"><b>Presentazione aziendale</b><span>Company profile · 23 pagine</span></span><span class="go">Apri</span></a>
+    <a class="doc" href="bv-catalogo-2026.pdf" target="_blank" rel="noopener"><img src="bv-cov-cat.webp" alt="" width="54" height="76"><span class="t"><b>Catalogo generale 2026</b><span>Linee viso e corpo · 82 pagine</span></span><span class="go">Apri</span></a>
+    <a class="doc" href="bv-merchandising-2026.pdf" target="_blank" rel="noopener"><img src="bv-cov-merch.webp" alt="" width="54" height="76"><span class="t"><b>Catalogo merchandising 2026</b><span>Materiali per il centro · 39 pagine</span></span><span class="go">Apri</span></a>
+  </section>
+
+  <section class="demo" aria-labelledby="dt">
+    <span class="label">Dimostrazione dedicata</span>
+    <h2 id="dt">Da dove volete iniziare?</h2>
+    <p>Vi faccio conoscere Bruno Vassari nel vostro centro, partendo dalle esigenze che incontrate più spesso. Scegliete l’area e organizziamo la prova.</p>
+    <div class="choices">
+      <a class="btn dark" href="https://wa.me/393460356595?text=Buongiorno%20Enzo%2C%20vorremmo%20una%20dimostrazione%20Bruno%20Vassari%20sui%20trattamenti%20viso." target="_blank" rel="noopener">Viso</a>
+      <a class="btn line" href="https://wa.me/393460356595?text=Buongiorno%20Enzo%2C%20vorremmo%20una%20dimostrazione%20Bruno%20Vassari%20sui%20rituali%20corpo." target="_blank" rel="noopener">Corpo</a>
+    </div>
+  </section>
+
+  <section class="contacts" aria-label="Contatti">
+    <div class="sig"><span class="name">Enzo Evandri</span><span>Beauty Strategist · Bruno Vassari</span></div>
+    <div class="rows">
+      <div class="row"><span class="k">Cell</span><span class="v" id="num">+39 346 035 6595</span><button class="copy" id="copy" type="button">Copia</button></div>
+      <div class="row"><span class="k">Email</span><span class="v">evandrienzo@gmail.com</span><span></span></div>
+      <div class="row"><span class="k">Instagram</span><a class="v" href="https://www.instagram.com/enzo_evandri/" target="_blank" rel="noopener">@enzo_evandri</a><span></span></div>
+    </div>
+    <a class="btn dark" href="https://wa.me/393460356595" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
+  </section>
+
+  <p class="foot">Bruno Vassari · Professional Cosmetics</p>
+</main>
+
+<script>
+document.getElementById('copy').onclick=async e=>{
+  const b=e.currentTarget;
+  try{await navigator.clipboard.writeText('+393460356595');b.textContent='Copiato';}
+  catch(_){const r=document.createRange();r.selectNodeContents(document.getElementById('num'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selezionato';}
+  setTimeout(()=>b.textContent='Copia',1800);
+};
+</script>
+</body>
+</html>
