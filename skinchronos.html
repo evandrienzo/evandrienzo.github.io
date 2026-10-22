@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Skinchronos Booster · Bruno Vassari">
+<meta property="og:description" content="Il microneedling che continua a casa, senza aghi. 4 domande per te.">
+<meta property="og:image" content="https://evandrienzo.github.io/skinchronos-anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://evandrienzo.github.io/skinchronos.html">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F2F6FA">
+<title>Skinchronos Booster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,500;0,700;0,800;1,700&family=Roboto:wght@400;500;700&display=swap">
+<style>
+*{box-sizing:border-box}
+body{margin:0;-webkit-text-size-adjust:100%}
+img{max-width:100%}
+[hidden]{display:none!important}
+/* Layout: una colonna da telefono — gancio, prodotto, 3 attivi, 4 domande a tocco, invio su WhatsApp */
+:root{
+  --bg:#F2F6FA; --surface:#FFFFFF; --ink:#0E2A4A; --muted:#55687F; --line:#D6E1EC;
+  --blue:#1F5FA8; --blue-soft:#E3EDF8; --glow:#6E5FB0; --glow-soft:#ECE8F8; --on-blue:#FFFFFF;
+  --display:"Roboto Condensed", "Helvetica Neue Condensed", "Arial Narrow", sans-serif;
+  --body:"Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B1724; --surface:#122334; --ink:#EAF1F8; --muted:#9DB0C4; --line:#24394F;
+  --blue:#6FA6E6; --blue-soft:#163049; --glow:#B9AEEA; --glow-soft:#2A2440; --on-blue:#0B1724; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B1724; --surface:#122334; --ink:#EAF1F8; --muted:#9DB0C4; --line:#24394F;
+  --blue:#6FA6E6; --blue-soft:#163049; --glow:#B9AEEA; --glow-soft:#2A2440; --on-blue:#0B1724; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:20px 40px;display:flex;flex-direction:column;gap:36px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--blue)}
+
+/* hero */
+.hero{display:flex;flex-direction:column;gap:14px}
+.from{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.from b{color:var(--ink);font-weight:600}
+.hero h1{font-size:clamp(34px,9vw,46px);font-weight:800;letter-spacing:0;text-transform:uppercase;color:var(--blue)}
+.hero h1 em{font-style:normal;color:var(--glow)}
+.hero .lead{font-size:17px;color:var(--muted);max-width:34ch}
+.shot{background:linear-gradient(180deg,var(--blue-soft),var(--bg));border-radius:22px;padding:12px 8px 0;display:flex;justify-content:center}
+.shot img{width:100%;max-width:420px;height:auto;display:block}
+.name{display:flex;flex-direction:column;gap:2px}
+.name .brand{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.name h2{font-size:24px;font-style:italic;text-transform:uppercase;letter-spacing:.02em}
+
+/* attivi */
+.formula{display:flex;flex-direction:column;gap:14px}
+.formula h2{font-size:26px}
+.chips{font-family:var(--display);font-size:15px;color:var(--muted)}
+.attivi{display:grid;gap:10px}
+.att{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start;padding:14px 0;border-top:1px solid var(--line)}
+.att:last-child{border-bottom:1px solid var(--line)}
+.att .k{font-family:var(--display);font-weight:700;font-size:15px;color:var(--blue);line-height:1.25}
+.att p{font-size:15px;min-width:0}
+.dati{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dato{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px}
+.dato .n{font-family:var(--display);font-weight:700;font-size:34px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.dato .l{font-size:13px;color:var(--muted);margin-top:6px}
+.fonte{font-size:12px;color:var(--muted)}
+
+/* domande */
+.quiz{display:flex;flex-direction:column;gap:14px}
+.quiz h2{font-size:26px}
+.quiz .intro{color:var(--muted);font-size:15px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.q h3{font-size:18px;font-weight:500;font-family:var(--body);line-height:1.35}
+.q .num{font-family:var(--display);font-weight:700;color:var(--glow);margin-right:6px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{font:inherit;font-size:15px;font-weight:500;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:9px 16px;cursor:pointer;min-height:42px}
+.opt[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
+.opt:focus-visible,.cta:focus-visible,.copy:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+.reply{font-size:14px;color:var(--ink);background:var(--glow-soft);border-radius:12px;padding:10px 12px}
+
+/* uso */
+.uso{display:flex;flex-direction:column;gap:12px}
+.uso h2{font-size:22px}
+.uso ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.uso li::marker{color:var(--blue)}
+
+/* chiusura */
+.end{background:var(--ink);color:var(--bg);border-radius:22px;padding:22px 18px;display:flex;flex-direction:column;gap:14px}
+.end h2{font-size:24px;color:var(--bg)}
+.end p{opacity:.85;font-size:15px}
+.cta{display:flex;justify-content:center;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:16px;background:var(--glow);color:var(--on-blue);border-radius:14px;padding:14px 16px;text-align:center}
+.tel{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px}
+.tel span{user-select:all;font-variant-numeric:tabular-nums}
+.copy{font:inherit;font-size:13px;background:transparent;color:var(--bg);border:1px solid currentColor;border-radius:999px;padding:6px 12px;cursor:pointer;opacity:.85}
+.sig{font-size:13px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:no-preference){.opt{transition:background .15s,border-color .15s,color .15s}}
+</style>
+</head>
+<body>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="from"><span><b>Enzo Evandri</b> · Beauty Strategist</span><span>Novità in cabina</span></div>
+    <h1>Il microneedling che <em>continua a casa</em>, senza aghi.</h1>
+    <p class="lead">Un siero con microspicule, esosomi e PDRN. Prima di raccontarti tutto, rispondi a 4 domande veloci in fondo.</p>
+    <div class="shot"><img src="skinchronos-espositore.webp" alt="Espositore Bruno Vassari Skinchronos Booster con flacone tester" width="760" height="1013"></div>
+    <div class="name"><span class="brand">Bruno Vassari · Lab Tech Care</span><h2>Skinchronos Booster</h2><span class="fonte">Siero pro-aging intensivo</span></div>
+  </section>
+
+  <section class="formula">
+    <span class="eyebrow">La formula</span>
+    <h2>Tre attivi che oggi tutti nominano. Qui lavorano insieme.</h2>
+    <div class="attivi">
+      <div class="att"><span class="k">0,3% spicule</span><p>Microspicule naturali che aprono micro-canali nella pelle, come fanno gli aghi in cabina, così gli attivi arrivano dove servono.</p></div>
+      <div class="att"><span class="k">Esosomi</span><p>Vescicole messaggere: portano alla cellula i segnali di rinnovamento. È l'attivo di cui le tue clienti stanno sentendo parlare.</p></div>
+      <div class="att"><span class="k">PDRN</span><p>Il "DNA di salmone" della medicina estetica, in versione cosmetica. Sostiene la rigenerazione della pelle.</p></div>
+    </div>
+    <div class="dati">
+      <div class="dato"><div class="n">−26%</div><div class="l">volume delle rughe</div></div>
+      <div class="dato"><div class="n">+9%</div><div class="l">idratazione di lunga durata</div></div>
+    </div>
+    <p class="fonte">Dati dichiarati da Bruno Vassari sul materiale del prodotto.</p>
+  </section>
+
+  <section class="quiz" aria-labelledby="qt">
+    <span class="eyebrow">4 domande, 30 secondi</span>
+    <h2 id="qt">Tu a che punto sei?</h2>
+    <p class="intro">Tocca una risposta per ogni domanda. Alla fine me le mandi con un tocco su WhatsApp.</p>
+    <div id="quiz"></div>
+  </section>
+
+  <section class="uso">
+    <span class="eyebrow">Per la cliente</span>
+    <h2>Come si usa a casa</h2>
+    <ul>
+      <li>La sera, su pelle pulita e asciutta: 1–2 erogazioni, evitando occhi e labbra. Distribuire senza sfregare, poi la crema dopo qualche minuto.</li>
+      <li>Si introduce piano: la prima settimana una sera sì e due no, la seconda a sere alterne. Al mattino protezione solare.</li>
+      <li>Non insieme a dispositivi a luce o calore, e non subito dopo procedure dermatologiche. Non adatto a pelli sensibili, reattive o infiammate.</li>
+    </ul>
+  </section>
+
+  <section class="end">
+    <h2>Vuoi provarlo in cabina?</h2>
+    <p>Mandami le tue risposte: ti dico come inserirlo nei tuoi protocolli e nella vendita domiciliare.</p>
+    <a class="cta" id="wa" href="https://wa.me/393460356595" target="_blank" rel="noopener">Invia le risposte su WhatsApp</a>
+    <div class="tel"><span id="num">+39 346 035 6595</span><button class="copy" id="copy" type="button">Copia numero</button></div>
+  </section>
+  <p class="sig">Enzo Evandri · @enzo_evandri</p>
+</main>
+
+<script>
+const domande=[
+  {q:"Conosci già gli esosomi e il PDRN?",o:["Sì, li conosco","Ne ho sentito parlare","No"],r:{"No":"Nessun problema: te li spiego in 5 minuti, con parole da usare con la cliente."}},
+  {q:"Nel tuo centro fai microneedling?",o:["Sì","No","Vorrei iniziare"],r:{"Sì":"Allora questo è il prodotto che allunga il risultato tra una seduta e l'altra.","Vorrei iniziare":"Ottimo punto di partenza: le spicule sono un primo passo semplice."}},
+  {q:"Dai alla cliente un prodotto domiciliare dopo il trattamento?",o:["Sempre","A volte","Mai"]},
+  {q:"Hai già prodotti con spicule o esosomi in cabina?",o:["Sì","No"]}
+];
+const scelte={};
+const box=document.getElementById('quiz');
+domande.forEach((d,i)=>{
+  const el=document.createElement('div');el.className='q';el.style.marginBottom='10px';
+  el.innerHTML=`<h3><span class="num">${i+1}</span>${d.q}</h3><div class="opts" role="group" aria-label="${d.q}"></div><p class="reply" hidden></p>`;
+  const opts=el.querySelector('.opts'),rep=el.querySelector('.reply');
+  d.o.forEach((t,j)=>{
+    const b=document.createElement('button');b.type='button';b.className='opt';b.id=`q${i}o${j}`;b.textContent=t;b.setAttribute('aria-pressed','false');
+    b.onclick=()=>{opts.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');scelte[i]=t;
+      const m=d.r&&d.r[t];rep.hidden=!m;if(m)rep.textContent=m;aggiorna();};
+    opts.appendChild(b);
+  });
+  box.appendChild(el);
+});
+function aggiorna(){
+  let txt="Ciao Enzo, ho visto Skinchronos Booster di Bruno Vassari. Le mie risposte:\n";
+  domande.forEach((d,i)=>{txt+=`${i+1}. ${d.q} ${scelte[i]||"—"}\n`});
+  document.getElementById('wa').href="https://wa.me/393460356595?text="+encodeURIComponent(txt);
+}
+aggiorna();
+document.getElementById('copy').onclick=async e=>{
+  const b=e.currentTarget;
+  try{await navigator.clipboard.writeText('+393460356595');b.textContent='Copiato';}
+  catch(_){const r=document.createRange();r.selectNodeContents(document.getElementById('num'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selezionato';}
+  setTimeout(()=>b.textContent='Copia numero',1800);
+};
+</script>
+</body>
+</html>
