@@ -104,13 +104,7 @@ footer{font-size:13px;color:var(--muted);text-align:center}
       <div class="ctrl o"><label for="prezzo">Prezzo medio a seduta</label><output id="oPrezzo"></output><input type="range" id="prezzo" min="20" max="150" step="5"></div>
       <div class="ctrl o"><label for="riv">Vendita prodotti sul fatturato</label><output id="oRiv"></output><input type="range" id="riv" min="0" max="30" step="1"></div>
     </div>
-    <div class="group" hidden>
-      <h3><span class="dot" style="background:var(--accent)"></span>Con il metodo</h3>
-      <div class="ctrl"><label for="occP">Cabine occupate</label><output id="oOccP"></output><input type="range" id="occP" min="10" max="95" step="5"></div>
-      <div class="ctrl"><label for="prezzoP">Prezzo medio a seduta</label><output id="oPrezzoP"></output><input type="range" id="prezzoP" min="20" max="200" step="5"></div>
-      <div class="ctrl"><label for="rivP">Vendita prodotti sul fatturato</label><output id="oRivP"></output><input type="range" id="rivP" min="0" max="40" step="1"></div>
-    </div>
-    <p class="how" id="how"></p>
+    <input type="hidden" id="occP"><input type="hidden" id="prezzoP"><input type="hidden" id="rivP">
   </section>
 
   <section class="group">
@@ -174,7 +168,6 @@ function aggiorna(){
   const v = k => +$(k).value;
   $("oCabine").textContent=v("cabine"); $("oOre").textContent=v("ore")+" h"; $("oGiorni").textContent=v("giorni");
   $("oOcc").textContent=v("occ")+"%"; $("oPrezzo").textContent=eur(v("prezzo")); $("oRiv").textContent=v("riv")+"%";
-  $("oOccP").textContent=v("occP")+"%"; $("oPrezzoP").textContent=eur(v("prezzoP")); $("oRivP").textContent=v("rivP")+"%";
   const a = calcola(v("occ"),v("prezzo"),v("riv")), b = calcola(v("occP"),v("prezzoP"),v("rivP"));
   const max = Math.max(a.totale,b.totale,1);
   $("vOggi").textContent=eur(a.totale); $("vPot").textContent=eur(b.totale);
@@ -182,7 +175,6 @@ function aggiorna(){
   const d=(b.totale-a.totale)*12;
   $("vDelta").textContent=(d>=0?"+ ":"− ")+eur(Math.abs(d)).replace("€ ","€ ");
   $("vDettaglio").textContent=Math.round(a.sedute)+" sedute al mese oggi, "+Math.round(b.sedute)+" con il metodo.";
-  $("how").textContent="Calcolo sul tuo centro: cabine × ore × giorni, sedute da "+CENTRO.durataSeduta+" minuti.";
 }
 document.querySelectorAll("input[type=range]").forEach(i=>i.addEventListener("input",aggiorna));
 aggiorna();
