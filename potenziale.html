@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Potenziale Cabine Skinem</title>
+<title>Potenziale Cabine · Enzo Evandri</title>
 <style>
 @font-face{font-family:"Larke Neue";src:url(font/larke-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Larke Neue";src:url(font/larke-600.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
@@ -85,7 +85,7 @@ footer{font-size:13px;color:var(--muted);text-align:center}
     <div class="eyebrow">Fatturato cabine al mese</div>
     <div class="rows">
       <div class="row"><span class="lbl">Oggi</span><span class="val" id="vOggi">–</span><div class="bar oggi"><i id="bOggi"></i></div></div>
-      <div class="row"><span class="lbl">Con il metodo Skinem</span><span class="val" id="vPot">–</span><div class="bar pot"><i id="bPot"></i></div></div>
+      <div class="row"><span class="lbl">Con il metodo Enzo Evandri</span><span class="val" id="vPot">–</span><div class="bar pot"><i id="bPot"></i></div></div>
     </div>
     <div class="delta">
       <div class="sub">Fatturato in più all'anno</div>
@@ -104,8 +104,8 @@ footer{font-size:13px;color:var(--muted);text-align:center}
       <div class="ctrl o"><label for="prezzo">Prezzo medio a seduta</label><output id="oPrezzo"></output><input type="range" id="prezzo" min="20" max="150" step="5"></div>
       <div class="ctrl o"><label for="riv">Vendita prodotti sul fatturato</label><output id="oRiv"></output><input type="range" id="riv" min="0" max="30" step="1"></div>
     </div>
-    <div class="group">
-      <h3><span class="dot" style="background:var(--accent)"></span>Con il metodo Skinem</h3>
+    <div class="group" hidden>
+      <h3><span class="dot" style="background:var(--accent)"></span>Con il metodo</h3>
       <div class="ctrl"><label for="occP">Cabine occupate</label><output id="oOccP"></output><input type="range" id="occP" min="10" max="95" step="5"></div>
       <div class="ctrl"><label for="prezzoP">Prezzo medio a seduta</label><output id="oPrezzoP"></output><input type="range" id="prezzoP" min="20" max="200" step="5"></div>
       <div class="ctrl"><label for="rivP">Vendita prodotti sul fatturato</label><output id="oRivP"></output><input type="range" id="rivP" min="0" max="40" step="1"></div>
@@ -114,13 +114,13 @@ footer{font-size:13px;color:var(--muted);text-align:center}
   </section>
 
   <section class="group">
-    <div class="eyebrow">Cosa ti proponiamo, in concreto</div>
+    <div class="eyebrow">Cosa ti propongo, in concreto</div>
     <h2>Quattro leve per arrivarci</h2>
     <div class="offers">
-      <div class="offer"><span class="tag">Tecnologia</span><b>Skinem OneSuite</b><span>Un'unica macchina costruita sul tuo centro: combiniamo Skinem HD, Lipolaser, Vacuum, Dermatherm in base ai trattamenti che vuoi vendere. Alza il prezzo medio e tiene l'estetista in cabina.</span></div>
-      <div class="offer"><span class="tag">Formazione</span><b>Percorso Uno</b><span>Setup, formazione del team in cabina, crescita e consolidamento. Il metodo che usiamo ogni giorno nei nostri due centri.</span></div>
+      <div class="offer"><span class="tag">Tecnologia</span><b>OneSuite</b><span>Un'unica macchina costruita sul tuo centro: combiniamo HD, Lipolaser, Vacuum, Dermatherm in base ai trattamenti che vuoi vendere. Alza il prezzo medio e tiene l'estetista in cabina.</span></div>
+      <div class="offer"><span class="tag">Formazione</span><b>Percorso Uno</b><span>Setup, formazione del team in cabina, crescita e consolidamento. Il metodo che uso ogni giorno nei miei due centri.</span></div>
       <div class="offer"><span class="tag">Epilazione</span><b>Laser Extreme</b><span>Laser a diodo a noleggio o in acquisto: riempie le ore libere con un trattamento ricorrente.</span></div>
-      <div class="offer"><span class="tag">Domiciliare</span><b>Linea cosmetica SkinNate e Resurface</b><span>Prosegue a casa il lavoro di cabina e fa crescere la vendita di prodotti.</span></div>
+      <div class="offer"><span class="tag">Domiciliare</span><b>Linea cosmetica domiciliare</b><span>Prosegue a casa il lavoro di cabina e fa crescere la vendita di prodotti.</span></div>
     </div>
   </section>
 
@@ -131,7 +131,7 @@ footer{font-size:13px;color:var(--muted);text-align:center}
     <p>Enzo Evandri · <span class="num">+39 346 035 6595</span></p>
   </section>
 
-  <footer>Enzo Evandri · Evolver · Stime indicative basate sui risultati dei centri Skinem. Non costituiscono garanzia di fatturato.</footer>
+  <footer>Enzo Evandri · Evolver · Stime indicative basate sui risultati reali dei miei centri. Non costituiscono garanzia di fatturato.</footer>
 </div>
 
 <script>
@@ -154,7 +154,7 @@ if (CENTRO.nome){
   $("eyebrow").textContent = "Analisi riservata · " + CENTRO.nome + (CENTRO.citta ? " · " + CENTRO.citta : "");
   $("titolo").textContent = "Quanto possono rendere le cabine di " + CENTRO.nome;
 }
-$("intro").textContent = "Abbiamo calcolato cosa fattura oggi il centro e cosa può fatturare con il metodo che applichiamo nei centri Skinem. Muovi i cursori per vedere come cambia.";
+$("intro").textContent = "Abbiamo calcolato cosa fattura oggi il centro e cosa può fatturare con il metodo che applico ogni giorno nei miei centri. Muovi i cursori per vedere come cambia.";
 $("esempio").hidden = !CENTRO.esempio;
 $("wa").href = "https://wa.me/393460356595?text=" + encodeURIComponent(
   "Ciao Enzo, ho visto l'analisi" + (CENTRO.nome ? " per " + CENTRO.nome : "") + ". Parliamone.");
@@ -182,7 +182,7 @@ function aggiorna(){
   const d=(b.totale-a.totale)*12;
   $("vDelta").textContent=(d>=0?"+ ":"− ")+eur(Math.abs(d)).replace("€ ","€ ");
   $("vDettaglio").textContent=Math.round(a.sedute)+" sedute al mese oggi, "+Math.round(b.sedute)+" con il metodo.";
-  $("how").textContent="Calcolo: cabine × ore × giorni ÷ sedute da "+CENTRO.durataSeduta+" minuti × occupazione × prezzo medio, più la vendita prodotti. Mese di "+SETT_MESE.toFixed(2).replace(".",",")+" settimane.";
+  $("how").textContent="Calcolo sul tuo centro: cabine × ore × giorni, sedute da "+CENTRO.durataSeduta+" minuti.";
 }
 document.querySelectorAll("input[type=range]").forEach(i=>i.addEventListener("input",aggiorna));
 aggiorna();
