@@ -67,6 +67,18 @@ header{display:flex;flex-direction:column;gap:12px}
 .cta a.btn{display:inline-block;background:var(--bg);color:var(--accent);text-decoration:none;font-weight:600;padding:12px 18px;border-radius:999px;align-self:flex-start}
 .cta a.btn:focus-visible,input:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
 .cta .num{font-variant-numeric:tabular-nums;user-select:all}
+.calc{border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:14px}
+.calc h3{margin:0;font-size:15px;font-weight:600}
+.calc .hint{font-size:13px;color:var(--muted)}
+.cbox{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.cbox b{font-weight:600;font-size:15px}
+.fld{display:grid;grid-template-columns:1fr 110px;gap:10px;align-items:center;font-size:15px}
+.fld input{font:inherit;font-variant-numeric:tabular-nums;width:100%;box-sizing:border-box;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-align:right}
+.res{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.res strong{font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums}
+.res button{font:inherit;font-weight:600;font-size:14px;padding:8px 14px;border-radius:999px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+.res button:disabled{opacity:.4;cursor:default}
+.res button:focus-visible,.fld input:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
 footer{font-size:13px;color:var(--muted);text-align:center}
 @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
 </style>
@@ -100,9 +112,26 @@ footer{font-size:13px;color:var(--muted);text-align:center}
       <div class="ctrl o"><label for="cabine">Cabine</label><output id="oCabine"></output><input type="range" id="cabine" min="1" max="6" step="1"></div>
       <div class="ctrl o"><label for="ore">Ore di lavoro al giorno</label><output id="oOre"></output><input type="range" id="ore" min="4" max="11" step="1"></div>
       <div class="ctrl o"><label for="giorni">Giorni a settimana</label><output id="oGiorni"></output><input type="range" id="giorni" min="3" max="6" step="1"></div>
-      <div class="ctrl o"><label for="occ">Cabine occupate</label><output id="oOcc"></output><input type="range" id="occ" min="10" max="95" step="5"></div>
-      <div class="ctrl o"><label for="prezzo">Prezzo medio a seduta</label><output id="oPrezzo"></output><input type="range" id="prezzo" min="20" max="150" step="5"></div>
+      <div class="ctrl o"><label for="occ">Cabine occupate</label><output id="oOcc"></output><input type="range" id="occ" min="5" max="100" step="1"></div>
+      <div class="ctrl o"><label for="prezzo">Prezzo medio a seduta</label><output id="oPrezzo"></output><input type="range" id="prezzo" min="15" max="200" step="1"></div>
       <div class="ctrl o"><label for="riv">Vendita prodotti sul fatturato</label><output id="oRiv"></output><input type="range" id="riv" min="0" max="30" step="1"></div>
+    </div>
+    <div class="calc">
+      <h3>Non sai la percentuale o il prezzo medio? Calcolali qui</h3>
+      <div class="cbox">
+        <b>Cabine occupate</b>
+        <div class="fld"><label for="cApp">Appuntamenti a settimana (tutte le cabine)</label><input type="number" id="cApp" inputmode="numeric" min="0" placeholder="es. 40"></div>
+        <div class="fld"><label for="cDur">Durata media di un trattamento (minuti)</label><input type="number" id="cDur" inputmode="numeric" min="10" value="60"></div>
+        <div class="res"><span>Occupazione: <strong id="rOcc">–</strong></span><button type="button" id="uOcc" disabled>Usa questo valore</button></div>
+        <p class="hint">Ore disponibili = cabine × ore al giorno × giorni, prese dai cursori sopra.</p>
+      </div>
+      <div class="cbox">
+        <b>Prezzo medio a seduta</b>
+        <div class="fld"><label for="cInc">Incasso dei trattamenti in un mese (€)</label><input type="number" id="cInc" inputmode="numeric" min="0" placeholder="es. 6000"></div>
+        <div class="fld"><label for="cSed">Sedute fatte in quel mese</label><input type="number" id="cSed" inputmode="numeric" min="0" placeholder="es. 170"></div>
+        <div class="res"><span>Prezzo medio: <strong id="rPrz">–</strong></span><button type="button" id="uPrz" disabled>Usa questo valore</button></div>
+        <p class="hint">Senza prodotti venduti: solo quello che incassi in cabina.</p>
+      </div>
     </div>
     <input type="hidden" id="occP"><input type="hidden" id="prezzoP"><input type="hidden" id="rivP">
   </section>
@@ -177,6 +206,20 @@ function aggiorna(){
   $("vDettaglio").textContent=Math.round(a.sedute)+" sedute al mese oggi, "+Math.round(b.sedute)+" con il metodo.";
 }
 document.querySelectorAll("input[type=range]").forEach(i=>i.addEventListener("input",aggiorna));
+function calcAiuto(){
+  const app=+$("cApp").value, dur=+$("cDur").value, inc=+$("cInc").value, sed=+$("cSed").value;
+  const minDisp=+$("cabine").value*+$("ore").value*60*+$("giorni").value;
+  const occ = app>0&&dur>0 ? Math.min(100,app*dur/minDisp*100) : null;
+  const prz = inc>0&&sed>0 ? inc/sed : null;
+  $("rOcc").textContent = occ===null ? "–" : Math.round(occ)+"%";
+  $("rPrz").textContent = prz===null ? "–" : eur(prz);
+  $("uOcc").disabled = occ===null; $("uPrz").disabled = prz===null;
+  return {occ,prz};
+}
+["cApp","cDur","cInc","cSed","cabine","ore","giorni"].forEach(id=>$(id).addEventListener("input",calcAiuto));
+$("uOcc").addEventListener("click",()=>{const {occ}=calcAiuto(); if(occ!==null){$("occ").value=Math.round(occ); aggiorna();}});
+$("uPrz").addEventListener("click",()=>{const {prz}=calcAiuto(); if(prz!==null){$("prezzo").value=Math.round(prz); aggiorna();}});
+calcAiuto();
 aggiorna();
 </script>
 </body>
