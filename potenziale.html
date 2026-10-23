@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Potenziale Cabine Skinem</title>
+<style>
+@font-face{font-family:"Larke Neue";src:url(https://enzo-eva.github.io/font/larke-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Larke Neue";src:url(https://enzo-eva.github.io/font/larke-600.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
+/* Layout: una colonna stretta da telefono — intestazione, "oggi" vs "potenziale", cursori, proposte, contatto */
+/* Un solo look scelto: grigio scuro e celeste, uguale in tema chiaro e scuro */
+:root{
+  --bg:#25292D; --surface:#2F343A; --ink:#EEF2F4; --muted:#A0AAB2; --line:#41484F;
+  --accent:#8FCDEE; --accent-soft:#2E4552; --rose:#BFE3F6; --rose-soft:#334A57;
+  --display:"Larke Neue", Georgia, serif;
+  --body:"Larke Neue", Georgia, serif;
+  color-scheme:dark;
+}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:620px;margin:0 auto;padding-block:28px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:28px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(34px,9vw,48px)}
+h2{font-size:28px}
+p{margin:0}
+.lead{color:var(--muted);max-width:60ch}
+.note{background:var(--rose-soft);color:var(--ink);border-radius:10px;padding:10px 14px;font-size:14px}
+header{display:flex;flex-direction:column;gap:12px}
+
+/* risultato */
+.result{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 18px;display:flex;flex-direction:column;gap:18px}
+.rows{display:flex;flex-direction:column;gap:14px}
+.row{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:baseline}
+.row .lbl{font-size:14px;color:var(--muted)}
+.row .val{font-family:var(--display);font-size:30px;font-variant-numeric:tabular-nums}
+.bar{grid-column:1/-1;height:10px;border-radius:5px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:5px;transition:width .4s ease}
+.bar.oggi i{background:var(--muted)}
+.bar.pot i{background:var(--accent)}
+.delta{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.delta .big{font-family:var(--display);font-size:clamp(40px,12vw,56px);color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.delta .sub{color:var(--muted);font-size:14px}
+
+/* cursori */
+.group{display:flex;flex-direction:column;gap:16px}
+.group h3{margin:0;font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:50%}
+.ctrl{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
+.ctrl label{font-size:15px}
+.ctrl output{font-weight:600;font-variant-numeric:tabular-nums}
+.ctrl input{grid-column:1/-1;width:100%;accent-color:var(--accent)}
+.ctrl.o input{accent-color:var(--muted)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:24px}
+.how{font-size:13px;color:var(--muted)}
+
+/* proposte */
+.offers{display:grid;gap:12px}
+.offer{border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:4px}
+.offer b{font-weight:600}
+.offer span{color:var(--muted);font-size:15px}
+.tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);font-weight:600}
+
+.cta{background:var(--accent);color:var(--bg);border-radius:16px;padding:22px 18px;display:flex;flex-direction:column;gap:12px}
+.cta h2{color:var(--bg)}
+.cta a.btn{display:inline-block;background:var(--bg);color:var(--accent);text-decoration:none;font-weight:600;padding:12px 18px;border-radius:999px;align-self:flex-start}
+.cta a.btn:focus-visible,input:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+.cta .num{font-variant-numeric:tabular-nums;user-select:all}
+footer{font-size:13px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow" id="eyebrow">Analisi riservata</div>
+    <h1 id="titolo">Quanto possono rendere le tue cabine</h1>
+    <p class="lead" id="intro"></p>
+    <p class="note" id="esempio">Valori di esempio: verranno sostituiti con i dati reali del centro.</p>
+  </header>
+
+  <section class="result" aria-live="polite">
+    <div class="eyebrow">Fatturato cabine al mese</div>
+    <div class="rows">
+      <div class="row"><span class="lbl">Oggi</span><span class="val" id="vOggi">–</span><div class="bar oggi"><i id="bOggi"></i></div></div>
+      <div class="row"><span class="lbl">Con il metodo Skinem</span><span class="val" id="vPot">–</span><div class="bar pot"><i id="bPot"></i></div></div>
+    </div>
+    <div class="delta">
+      <div class="sub">Fatturato in più all'anno</div>
+      <div class="big" id="vDelta">–</div>
+      <div class="sub" id="vDettaglio"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="group">
+      <h3><span class="dot" style="background:var(--muted)"></span>Il tuo centro oggi</h3>
+      <div class="ctrl o"><label for="cabine">Cabine</label><output id="oCabine"></output><input type="range" id="cabine" min="1" max="6" step="1"></div>
+      <div class="ctrl o"><label for="ore">Ore di lavoro al giorno</label><output id="oOre"></output><input type="range" id="ore" min="4" max="11" step="1"></div>
+      <div class="ctrl o"><label for="giorni">Giorni a settimana</label><output id="oGiorni"></output><input type="range" id="giorni" min="3" max="6" step="1"></div>
+      <div class="ctrl o"><label for="occ">Cabine occupate</label><output id="oOcc"></output><input type="range" id="occ" min="10" max="95" step="5"></div>
+      <div class="ctrl o"><label for="prezzo">Prezzo medio a seduta</label><output id="oPrezzo"></output><input type="range" id="prezzo" min="20" max="150" step="5"></div>
+      <div class="ctrl o"><label for="riv">Vendita prodotti sul fatturato</label><output id="oRiv"></output><input type="range" id="riv" min="0" max="30" step="1"></div>
+    </div>
+    <div class="group">
+      <h3><span class="dot" style="background:var(--accent)"></span>Con il metodo Skinem</h3>
+      <div class="ctrl"><label for="occP">Cabine occupate</label><output id="oOccP"></output><input type="range" id="occP" min="10" max="95" step="5"></div>
+      <div class="ctrl"><label for="prezzoP">Prezzo medio a seduta</label><output id="oPrezzoP"></output><input type="range" id="prezzoP" min="20" max="200" step="5"></div>
+      <div class="ctrl"><label for="rivP">Vendita prodotti sul fatturato</label><output id="oRivP"></output><input type="range" id="rivP" min="0" max="40" step="1"></div>
+    </div>
+    <p class="how" id="how"></p>
+  </section>
+
+  <section class="group">
+    <div class="eyebrow">Cosa ti proponiamo, in concreto</div>
+    <h2>Quattro leve per arrivarci</h2>
+    <div class="offers">
+      <div class="offer"><span class="tag">Tecnologia</span><b>Skinem OneSuite</b><span>Un'unica macchina costruita sul tuo centro: combiniamo Skinem HD, Lipolaser, Vacuum, Dermatherm in base ai trattamenti che vuoi vendere. Alza il prezzo medio e tiene l'estetista in cabina.</span></div>
+      <div class="offer"><span class="tag">Formazione</span><b>Percorso Uno</b><span>Setup, formazione del team in cabina, crescita e consolidamento. Il metodo che usiamo ogni giorno nei nostri due centri.</span></div>
+      <div class="offer"><span class="tag">Epilazione</span><b>Laser Extreme</b><span>Laser a diodo a noleggio o in acquisto: riempie le ore libere con un trattamento ricorrente.</span></div>
+      <div class="offer"><span class="tag">Domiciliare</span><b>Linea cosmetica SkinNate e Resurface</b><span>Prosegue a casa il lavoro di cabina e fa crescere la vendita di prodotti.</span></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Parliamone sui tuoi numeri veri</h2>
+    <p>Venti minuti in centro, guardiamo agenda e listino e ti preparo una proposta precisa.</p>
+    <a class="btn" id="wa" href="https://wa.me/393460356595" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
+    <p>Enzo Evandri · <span class="num">+39 346 035 6595</span></p>
+  </section>
+
+  <footer>Enzo Evandri · Evolver · Stime indicative basate sui risultati dei centri Skinem. Non costituiscono garanzia di fatturato.</footer>
+</div>
+
+<script>
+/* ===== DATI DEL CENTRO: cambia solo questo blocco per ogni centro ===== */
+const CENTRO = {
+  nome: "",                 // es. "Centro Estetico Aurora" — vuoto = pagina generica
+  citta: "",                // es. "Civitanova Marche"
+  esempio: true,            // false quando i numeri sono reali
+  oggi:   { cabine:2, ore:8, giorni:5, occupazione:45, prezzo:45, rivendita:5 },
+  metodo: { occupazione:70, prezzo:75, rivendita:15 },
+  durataSeduta: 60          // minuti medi di cabina per seduta
+};
+/* ===================================================================== */
+
+const SETT_MESE = 52/12;
+const $ = id => document.getElementById(id);
+const eur = n => "€ " + Math.round(n).toLocaleString("it-IT");
+
+if (CENTRO.nome){
+  $("eyebrow").textContent = "Analisi riservata · " + CENTRO.nome + (CENTRO.citta ? " · " + CENTRO.citta : "");
+  $("titolo").textContent = "Quanto possono rendere le cabine di " + CENTRO.nome;
+}
+$("intro").textContent = "Abbiamo calcolato cosa fattura oggi il centro e cosa può fatturare con il metodo che applichiamo nei centri Skinem. Muovi i cursori per vedere come cambia.";
+$("esempio").hidden = !CENTRO.esempio;
+$("wa").href = "https://wa.me/393460356595?text=" + encodeURIComponent(
+  "Ciao Enzo, ho visto l'analisi" + (CENTRO.nome ? " per " + CENTRO.nome : "") + ". Parliamone.");
+
+const init = {cabine:CENTRO.oggi.cabine, ore:CENTRO.oggi.ore, giorni:CENTRO.oggi.giorni, occ:CENTRO.oggi.occupazione,
+  prezzo:CENTRO.oggi.prezzo, riv:CENTRO.oggi.rivendita, occP:CENTRO.metodo.occupazione, prezzoP:CENTRO.metodo.prezzo, rivP:CENTRO.metodo.rivendita};
+for (const k in init) $(k).value = init[k];
+
+function calcola(occ, prezzo, riv){
+  const c=+$("cabine").value, o=+$("ore").value, g=+$("giorni").value;
+  const posti = c * (o*60/CENTRO.durataSeduta) * g * SETT_MESE;
+  const sedute = posti * occ/100;
+  const cabina = sedute * prezzo;
+  return {sedute, totale: cabina * (1 + riv/100)};
+}
+function aggiorna(){
+  const v = k => +$(k).value;
+  $("oCabine").textContent=v("cabine"); $("oOre").textContent=v("ore")+" h"; $("oGiorni").textContent=v("giorni");
+  $("oOcc").textContent=v("occ")+"%"; $("oPrezzo").textContent=eur(v("prezzo")); $("oRiv").textContent=v("riv")+"%";
+  $("oOccP").textContent=v("occP")+"%"; $("oPrezzoP").textContent=eur(v("prezzoP")); $("oRivP").textContent=v("rivP")+"%";
+  const a = calcola(v("occ"),v("prezzo"),v("riv")), b = calcola(v("occP"),v("prezzoP"),v("rivP"));
+  const max = Math.max(a.totale,b.totale,1);
+  $("vOggi").textContent=eur(a.totale); $("vPot").textContent=eur(b.totale);
+  $("bOggi").style.width=(a.totale/max*100)+"%"; $("bPot").style.width=(b.totale/max*100)+"%";
+  const d=(b.totale-a.totale)*12;
+  $("vDelta").textContent=(d>=0?"+ ":"− ")+eur(Math.abs(d)).replace("€ ","€ ");
+  $("vDettaglio").textContent=Math.round(a.sedute)+" sedute al mese oggi, "+Math.round(b.sedute)+" con il metodo.";
+  $("how").textContent="Calcolo: cabine × ore × giorni ÷ sedute da "+CENTRO.durataSeduta+" minuti × occupazione × prezzo medio, più la vendita prodotti. Mese di "+SETT_MESE.toFixed(2).replace(".",",")+" settimane.";
+}
+document.querySelectorAll("input[type=range]").forEach(i=>i.addEventListener("input",aggiorna));
+aggiorna();
+</script>
+</body>
+</html>
