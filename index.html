@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Enzo Evandri">
+<meta property="og:description" content="Cosmetica, tecnologie e formazione per centri estetici">
+<meta property="og:image" content="https://evandrienzo.github.io/enzo-anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://evandrienzo.github.io/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#FFFFFF">
+<title>Enzo Evandri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap">
+<style>
+*{box-sizing:border-box}
+body{margin:0;-webkit-text-size-adjust:100%}
+/* Layout: la valigia di Enzo — prima la persona, poi cosmetica, tecnologie, servizi, contatti. Tema unico chiaro per scelta. */
+:root{
+  --bg:#FFFFFF; --ink:#1F1F1F; --muted:#767676; --line:#EAEAEA; --soft:#F6F5F3; --on-ink:#FFFFFF; --mark:#8C7A6B;
+  --font:"Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:300;font-size:17px;line-height:1.6}
+.wrap{max-width:600px;margin:0 auto;padding-left:max(18px, env(safe-area-inset-left, 0px));padding-right:max(18px, env(safe-area-inset-right, 0px));padding-block:24px 44px;display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-weight:200;text-transform:uppercase;letter-spacing:.06em;line-height:1.15;margin:0;text-wrap:balance}
+p{margin:0}
+b{font-weight:600}
+img{display:block;width:100%;height:auto}
+.label{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;color:var(--muted)}
+.sec{display:flex;flex-direction:column;gap:16px}
+.sec>h2{font-size:26px}
+.rule{width:44px;height:1px;background:var(--ink)}
+a{color:inherit}
+
+/* persona */
+.me{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center}
+.me img{width:120px;height:120px;object-fit:cover;filter:grayscale(1)}
+.me h1{font-size:clamp(30px,8vw,40px)}
+.me .role{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.story{display:flex;flex-direction:column;gap:14px}
+.story .big{font-size:21px;font-weight:200;line-height:1.45}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line)}
+.fact{padding:14px 6px 12px 0;display:flex;flex-direction:column;gap:4px;min-width:0}
+.fact+.fact{padding-left:14px;border-left:1px solid var(--line)}
+.fact .n{font-size:28px;font-weight:200;line-height:1}
+.fact .l{font-size:12px;color:var(--muted);line-height:1.35}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{display:flex;justify-content:center;align-items:center;min-height:50px;padding:10px;text-align:center;text-decoration:none;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:400}
+.btn.dark{background:var(--ink);color:var(--on-ink)}
+.btn.line{border:1px solid var(--ink);color:var(--ink)}
+
+/* indice */
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:1px solid var(--line);padding:8px 12px}
+
+/* marchi cosmetici */
+.brand{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:start;padding:16px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.brand:last-of-type{border-bottom:1px solid var(--line)}
+.brand img{width:110px;aspect-ratio:1;object-fit:cover;background:var(--soft)}
+.brand .t{display:flex;flex-direction:column;gap:4px;min-width:0}
+.brand .who{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.brand h3{font-size:19px}
+.brand p{font-size:15px;color:#444}
+.brand .go{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:400;margin-top:4px}
+.noimg{width:110px;aspect-ratio:1;background:var(--soft);display:grid;place-items:center;font-size:13px;letter-spacing:.2em;color:var(--muted)}
+
+/* tecnologie */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 12px}
+.tech{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);min-width:0}
+.tech img{aspect-ratio:5/4;object-fit:cover;background:var(--soft)}
+.tech .area{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.tech b{font-weight:400;text-transform:uppercase;letter-spacing:.06em;font-size:15px;line-height:1.25}
+.tech span.d{font-size:13px;color:#555;line-height:1.4}
+.tech .go{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+.one{display:grid;grid-template-columns:1fr 140px;gap:16px;align-items:center;background:var(--soft);padding:18px}
+.one img{width:140px}
+.one h3{font-size:20px}
+.one p{font-size:15px;color:#444;margin-top:6px}
+
+/* servizi */
+.serv{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.srv{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.srv b{display:block;font-weight:400;text-transform:uppercase;letter-spacing:.08em;font-size:15px}
+.srv span{font-size:14px;color:#555}
+.srv .go{font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+
+/* contatti */
+.rows{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:92px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px}
+.row .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.row .v{min-width:0;overflow-wrap:anywhere;user-select:all}
+.copy{font:inherit;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:transparent;color:var(--ink);border:1px solid var(--line);padding:6px 10px;cursor:pointer}
+.btn:focus-visible,.brand:focus-visible,.tech:focus-visible,.srv:focus-visible,.toc a:focus-visible,.copy:focus-visible{outline:2px solid var(--mark);outline-offset:3px}
+.foot{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+
+<main class="wrap">
+  <section class="sec" aria-labelledby="nm">
+    <div class="me">
+      <img src="v-enzo.webp" alt="Enzo Evandri" width="420" height="420">
+      <div><h1 id="nm">Enzo Evandri</h1><div class="role">Evolver</div></div>
+    </div>
+    <div class="story">
+      <p class="big">Prima di un prodotto, ti porto la mia esperienza: venticinque anni dentro l’estetica professionale, dalla parte di chi lavora in cabina.</p>
+      <p>Ho iniziato a Roma gestendo il team e i numeri di due istituti di bellezza. Dal 2010 lavoro con i centri estetici, nel 2019 ho progettato la mia prima macchina, Skinem HD, con il suo metodo di trattamento. Oggi ho due centri miei e ogni giorno faccio formazione in cabina: quello che ti propongo l’ho provato prima io.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><span class="n">25+</span><span class="l">anni nell’estetica professionale</span></div>
+      <div class="fact"><span class="n">2</span><span class="l">centri estetici miei</span></div>
+      <div class="fact"><span class="n">2019</span><span class="l">nasce Skinem HD</span></div>
+    </div>
+    <div class="btns">
+      <a class="btn dark" href="https://wa.me/393460356595" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn line" href="tel:+393460356595">Chiama</a>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="Indice">
+    <span class="label">Nella mia valigia</span>
+    <nav class="toc"><a href="#cosmetica">Cosmetica</a><a href="#tecnologie">Tecnologie</a><a href="#servizi">Formazione e servizi</a><a href="#contatti">Contatti</a></nav>
+  </section>
+
+  <section class="sec" id="cosmetica" aria-labelledby="ct">
+    <span class="label">Per la cabina e per casa</span>
+    <h2 id="ct">Cosmetica professionale</h2>
+    <div>
+      <a class="brand" href="brunovassari.html"><img src="bv-ritratto.webp" alt="" width="352" height="502"><span class="t"><span class="who">Bruno Vassari · Barcellona, dal 1984</span><h3>Bruno Vassari</h3><p>Linee viso e corpo, protocolli di cabina e domiciliari. Presente in 55 paesi.</p><span class="go">Presentazione e cataloghi →</span></span></a>
+      <a class="brand" href="skinchronos.html"><img src="skinchronos-espositore.webp" alt="" width="748" height="1100"><span class="t"><span class="who">Bruno Vassari · Novità</span><h3>Skinchronos Booster</h3><p>Il microneedling a casa, senza aghi: dopo la cabina o come trattamento domiciliare.</p><span class="go">Scopri →</span></span></a>
+      <a class="brand" href="https://link.skinem.it/vetrina.html" target="_blank" rel="noopener"><img src="v-cabina.webp" alt="" width="486" height="600"><span class="t"><span class="who">Skinem</span><h3>Cosmetica Skinem</h3><p>Cabina viso, Method Body System, attivi HD e domiciliari viso e corpo. Solo per professioniste.</p><span class="go">Vetrina Skinem →</span></span></a>
+      <a class="brand" href="https://link.skinem.it/vetrina.html" target="_blank" rel="noopener"><span class="noimg">SN</span><span class="t"><span class="who">SkinNate</span><h3>Microneedling SkinNate</h3><p>Lo strumento domiciliare con la sua linea, le penne professionali per la cabina e il corso.</p><span class="go">Scopri →</span></span></a>
+    </div>
+  </section>
+
+  <section class="sec" id="tecnologie" aria-labelledby="tt">
+    <span class="label">Skinem · Tecnologie</span>
+    <h2 id="tt">Le macchine</h2>
+    <div class="one">
+      <div><h3>Skinem OneSuite</h3><p>Un’unica macchina con dentro le tecnologie che servono al tuo centro. Lavori con due trattamenti insieme.</p></div>
+      <img src="v-onesuite.webp" alt="Skinem OneSuite" width="372" height="600">
+    </div>
+    <div class="grid">
+      <a class="tech" href="https://link.skinem.it/laser-extreme.html" target="_blank" rel="noopener"><img src="v-laser.webp" alt="" width="600" height="480"><span class="area">Epilazione</span><b>Laser Extreme</b><span class="d">Diodo certificato Classe 1C, anche a noleggio.</span><span class="go">Presentazione →</span></a>
+      <a class="tech" href="https://link.skinem.it/vetrina.html" target="_blank" rel="noopener"><img src="v-skinemhd.webp" alt="" width="600" height="480"><span class="area">Viso</span><b>Skinem HD</b><span class="d">La mia macchina, con il suo protocollo.</span><span class="go">Scopri →</span></a>
+      <a class="tech" href="https://link.skinem.it/dermatherm.html" target="_blank" rel="noopener"><img src="v-dermatherm.webp" alt="" width="600" height="480"><span class="area">Viso e corpo</span><b>Dermatherm</b><span class="d">Il calore rigenerante degli infrarossi lontani.</span><span class="go">Presentazione →</span></a>
+      <a class="tech" href="https://link.skinem.it/lipolaser.html" target="_blank" rel="noopener"><img src="v-lipolaser.webp" alt="" width="600" height="480"><span class="area">Corpo</span><b>Lipolaser</b><span class="d">Placche di luce laser per rimodellare.</span><span class="go">Presentazione →</span></a>
+      <a class="tech" href="https://link.skinem.it/fir-vacuum.html" target="_blank" rel="noopener"><img src="v-fir.webp" alt="" width="495" height="600"><span class="area">Corpo</span><b>FIR Pad + Vacuum</b><span class="d">Due trattamenti, un’ora sola.</span><span class="go">Presentazione →</span></a>
+      <a class="tech" href="https://link.skinem.it/vetrina.html" target="_blank" rel="noopener"><img src="v-presso.webp" alt="" width="425" height="340"><span class="area">Corpo</span><b>Pressoterapia</b><span class="d">Drenante, per gambe pesanti e gonfiore.</span><span class="go">Scopri →</span></a>
+      <a class="tech" href="https://link.skinem.it/vetrina.html" target="_blank" rel="noopener"><img src="v-microdermo.webp" alt="" width="600" height="480"><span class="area">Viso</span><b>Microdermo</b><span class="d">Leviga e prepara la pelle agli attivi.</span><span class="go">Scopri →</span></a>
+      <a class="tech" href="https://link.skinem.it/vetrina.html" target="_blank" rel="noopener"><img src="v-vacuum.webp" alt="" width="600" height="480"><span class="area">Corpo</span><b>Vacuum</b><span class="d">Endomassaggio per ritenzione e compattezza.</span><span class="go">Scopri →</span></a>
+    </div>
+  </section>
+
+  <section class="sec" id="servizi" aria-labelledby="st">
+    <span class="label">Al tuo fianco</span>
+    <h2 id="st">Formazione e servizi</h2>
+    <div class="serv">
+      <div class="srv"><span><b>Formazione in cabina</b><span>Protocolli, anamnesi e vendita, sulle tue clienti e con il tuo team.</span></span><span></span></div>
+      <div class="srv"><span><b>Consulenza per il centro</b><span>Listino, numeri, clienti e organizzazione.</span></span><span></span></div>
+      <a class="srv" href="https://link.skinem.it/sicurezza-laser.html" target="_blank" rel="noopener"><span><b>Corso sicurezza laser</b><span>Online con l’ingegnere, per mettere in regola il laser.</span></span><span class="go">Scopri →</span></a>
+    </div>
+  </section>
+
+  <section class="sec" id="contatti" aria-labelledby="kt">
+    <span class="label">Contatti</span>
+    <h2 id="kt">Quando vuoi, sono qui</h2>
+    <div class="rows">
+      <div class="row"><span class="k">Cell</span><span class="v" id="num">+39 346 035 6595</span><button class="copy" id="copy" type="button">Copia</button></div>
+      <div class="row"><span class="k">Instagram</span><a class="v" href="https://www.instagram.com/enzo_evandri/" target="_blank" rel="noopener">@enzo_evandri</a><span></span></div>
+    </div>
+    <a class="btn dark" href="https://wa.me/393460356595?text=Ciao%20Enzo%2C%20vorrei%20fissare%20un%20appuntamento." target="_blank" rel="noopener">Fissiamo un appuntamento</a>
+  </section>
+
+  <p class="foot">Enzo Evandri · Evolver</p>
+</main>
+
+<script>
+document.getElementById('copy').onclick=async e=>{
+  const b=e.currentTarget;
+  try{await navigator.clipboard.writeText('+393460356595');b.textContent='Copiato';}
+  catch(_){const r=document.createRange();r.selectNodeContents(document.getElementById('num'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selezionato';}
+  setTimeout(()=>b.textContent='Copia',1800);
+};
+</script>
+</body>
+</html>
